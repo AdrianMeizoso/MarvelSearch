@@ -17,8 +17,10 @@ class MainActivity : DaggerAppCompatActivity() {
 
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        mainViewModel.init().observe(this, Observer {text ->
-            helloText.text = text
-        })
+        mainViewModel.init().observe(this, Observer {text -> setTextToView(text)})
+    }
+
+    private fun setTextToView(text: String?) {
+        helloText.text = text
     }
 }
