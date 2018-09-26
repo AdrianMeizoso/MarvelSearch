@@ -7,8 +7,11 @@ class MainViewModel : ViewModel() {
 
     val text: MutableLiveData<String> = MutableLiveData()
 
-    fun init() :MutableLiveData<String>{
+    fun init() {
         text.value = "Cojonudo!"
+    }
+
+    fun getTextData(): MutableLiveData<String> {
         return text
     }
 }

@@ -17,7 +17,11 @@ class MainActivity : DaggerAppCompatActivity() {
 
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        mainViewModel.init().observe(this, Observer {text -> setTextToView(text)})
+        helloText.setTextColor(getColor(R.color.colorPrimary))
+
+        mainViewModel.init()
+        mainViewModel.getTextData().observe(this,
+                Observer { text -> setTextToView(text) })
     }
 
     private fun setTextToView(text: String?) {

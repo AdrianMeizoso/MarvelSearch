@@ -1,6 +1,6 @@
 package com.adrian.marvelsearch
 
-import com.adrian.marvelsearch.common.ApplicationComponent
+import com.adrian.marvelsearch.common.injection.ApplicationComponent
 import com.adrian.marvelsearch.common.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication

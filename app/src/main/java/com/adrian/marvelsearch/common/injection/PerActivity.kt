@@ -1,4 +1,4 @@
-package com.adrian.marvelsearch.common
+package com.adrian.marvelsearch.common.injection
 
 import javax.inject.Scope
 
