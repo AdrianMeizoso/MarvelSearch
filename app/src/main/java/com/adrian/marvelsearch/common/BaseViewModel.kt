@@ -1,12 +1,14 @@
 package com.adrian.marvelsearch.common
 
 import androidx.lifecycle.ViewModel
+import io.reactivex.disposables.CompositeDisposable
 
-class BaseViewModel : ViewModel() {
-    //var disposables: CompositeDisposables
+open class BaseViewModel : ViewModel() {
+
+    var disposables = CompositeDisposable()
 
     override fun onCleared() {
         super.onCleared()
-        //disposables.clear()
+        disposables.clear()
     }
 }

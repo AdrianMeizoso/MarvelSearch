@@ -6,8 +6,12 @@ import androidx.lifecycle.ViewModelProviders
 import com.adrian.marvelsearch.R
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
+
+    @Inject
+    lateinit var mainViewModelFactory: MainViewModelFactory
 
     lateinit var mainViewModel: MainViewModel
 
@@ -15,13 +19,12 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProviders.of(this, mainViewModelFactory)
+                .get(MainViewModel::class.java)
 
         helloText.setTextColor(getColor(R.color.colorPrimary))
 
-        mainViewModel.init()
-        mainViewModel.getTextData().observe(this,
-                Observer { text -> setTextToView(text) })
+        mainViewModel.getTextData().observe(this, Observer(::setTextToView))
     }
 
     private fun setTextToView(text: String?) {
