@@ -1,6 +1,8 @@
 package com.adrian.marvelsearch.common.injection
 
-import dagger.Binds
+import com.adrian.marvelsearch.main.HeroesRepository
+import com.adrian.marvelsearch.main.datasource.HeroesApiDataSource
+import com.adrian.marvelsearch.main.datasource.HeroesDataSource
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -29,4 +31,14 @@ class DataModule {
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(okHttpClient)
                     .build()
+
+    @Provides
+    @Singleton
+    fun bindHeroesApiDataSource(retrofit: Retrofit): HeroesApiDataSource
+            = retrofit.create(HeroesApiDataSource::class.java)
+
+    @Provides
+    @Singleton
+    fun bindHeroesRepository(heroesApiDataSource: HeroesApiDataSource): HeroesDataSource
+            = HeroesRepository(heroesApiDataSource)
 }

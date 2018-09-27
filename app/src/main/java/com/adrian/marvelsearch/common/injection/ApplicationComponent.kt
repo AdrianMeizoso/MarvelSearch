@@ -9,7 +9,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 
 @Singleton
-@Component(modules = [AppModule::class, AndroidInjectionModule::class,
+@Component(modules = [AppModule::class, DataModule::class, AndroidInjectionModule::class,
     AndroidSupportInjectionModule::class, InjectorBuilder::class])
 interface ApplicationComponent : AndroidInjector<MarvelSearchApp> {
 
