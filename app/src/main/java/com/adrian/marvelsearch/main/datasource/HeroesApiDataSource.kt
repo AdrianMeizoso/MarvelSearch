@@ -1,13 +1,15 @@
 package com.adrian.marvelsearch.main.datasource
 
+import com.adrian.marvelsearch.main.domain.MarvelResponse
 import io.reactivex.Single
 import retrofit2.http.GET
-import retrofit2.http.Headers
+import retrofit2.http.Query
 
 interface HeroesApiDataSource {
 
-    @Headers("Content-Type: application/json")
-    @GET("/{example}/example/example")
-    fun getHeroes(): Single<List<String>>
-
+    @GET("characters")
+    fun getHeroes(@Query("ts") timestamp: String,
+                  @Query("apikey") apiKey: String,
+                  @Query("hash") hash: String)
+            : Single<MarvelResponse>
 }

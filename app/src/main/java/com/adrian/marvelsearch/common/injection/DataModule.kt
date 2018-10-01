@@ -3,6 +3,7 @@ package com.adrian.marvelsearch.common.injection
 import com.adrian.marvelsearch.main.HeroesRepository
 import com.adrian.marvelsearch.main.datasource.HeroesApiDataSource
 import com.adrian.marvelsearch.main.datasource.HeroesDataSource
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -15,7 +16,7 @@ import javax.inject.Singleton
 class DataModule {
 
     companion object {
-        const val BASE_URL = "https://api.example.com"
+        const val BASE_URL = "http://gateway.marvel.com/v1/public/"
     }
 
     @Provides
@@ -31,6 +32,11 @@ class DataModule {
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(okHttpClient)
                     .build()
+
+    @Provides
+    @Singleton
+    fun bindMoshi(): Moshi =
+            Moshi.Builder().build()
 
     @Provides
     @Singleton

@@ -23,8 +23,8 @@ class MainActivity : DaggerAppCompatActivity() {
                 .get(MainViewModel::class.java)
 
         helloText.setTextColor(getColor(R.color.colorPrimary))
-
-        mainViewModel.getTextData().observe(this, Observer(::setTextToView))
+        mainViewModel.text.observe(this, Observer(::setTextToView))
+        mainViewModel.getTextData()
     }
 
     private fun setTextToView(text: String?) {

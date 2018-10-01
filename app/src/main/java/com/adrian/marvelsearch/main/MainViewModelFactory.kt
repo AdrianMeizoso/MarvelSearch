@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.adrian.marvelsearch.main.usecase.GetHeroes
 import javax.inject.Inject
 
-class MainViewModelFactory @Inject constructor(private var getHeroes: GetHeroes) : ViewModelProvider.Factory {
+class MainViewModelFactory @Inject constructor(private var getHeroes: GetHeroes)  : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
