@@ -10,7 +10,12 @@ import javax.inject.Singleton
 @Singleton
 class GetHeroes @Inject constructor(private val heroesRepository: HeroesDataSource) {
 
-    fun execute(): Single<List<MarvelHero>> = heroesRepository
-            .getHeroes()
-            .flatMap {Single.just(it.marvelData.marvelHeroes)}
+    var offset: Int = 0
+
+    fun execute(): Single<List<MarvelHero>> {
+        return heroesRepository
+                .getHeroes(offset)
+                .flatMap { Single.just(it.marvelData.marvelHeroes) }
+                .doFinally { offset = 0 }
+    }
 }

@@ -5,6 +5,6 @@ import io.reactivex.Single
 
 interface HeroesDataSource {
 
-    fun getHeroes(): Single<MarvelResponse>
+    fun getHeroes(offset: Int): Single<MarvelResponse>
 
 }

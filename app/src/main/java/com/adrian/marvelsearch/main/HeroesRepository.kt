@@ -13,9 +13,9 @@ class HeroesRepository(private val heroesApiDataSource: HeroesApiDataSource) : H
         const val APIKEYPRIVATE = "bc381ea87c7c0f18495430bb551ef8498220dd97"
     }
 
-    override fun getHeroes(): Single<MarvelResponse> {
+    override fun getHeroes(offset: Int): Single<MarvelResponse> {
         val millis = System.currentTimeMillis()
         val hash = "$millis$APIKEYPRIVATE$APIKEYPUBLIC".md5()
-        return heroesApiDataSource.getHeroes( millis.toString(), APIKEYPUBLIC, hash)
+        return heroesApiDataSource.getHeroes( millis.toString(), APIKEYPUBLIC, hash, offset)
     }
 }

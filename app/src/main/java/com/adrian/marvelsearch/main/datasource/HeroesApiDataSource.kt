@@ -10,6 +10,7 @@ interface HeroesApiDataSource {
     @GET("characters")
     fun getHeroes(@Query("ts") timestamp: String,
                   @Query("apikey") apiKey: String,
-                  @Query("hash") hash: String)
+                  @Query("hash") hash: String,
+                  @Query("offset") offset: Int)
             : Single<MarvelResponse>
 }
