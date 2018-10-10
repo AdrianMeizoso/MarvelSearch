@@ -1,9 +1,11 @@
-package com.adrian.marvelsearch.main
+package com.adrian.marvelsearch.main.view
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.adrian.marvelsearch.R
+import com.adrian.marvelsearch.main.MainViewModel
+import com.adrian.marvelsearch.main.MainViewModelFactory
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
