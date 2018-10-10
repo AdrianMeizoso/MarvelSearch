@@ -18,10 +18,10 @@ class MainViewModel(private var getHeroes: GetHeroes) : BaseViewModel() {
 
     fun getTextData() {
         val pagedListConfig =
-                PagedList.Config.Builder().setEnablePlaceholders(true)
-                        .setPrefetchDistance(20)
-                        .setInitialLoadSizeHint(20 * 100)
-                        .setPageSize(20).build()
+                PagedList.Config.Builder().setEnablePlaceholders(false)
+                        .setInitialLoadSizeHint(20)
+                        .setPageSize(20)
+                        .build()
         val sourceFactory = HeroesPagingDataSourceFactory(disposables, getHeroes)
         heroesList = LivePagedListBuilder(sourceFactory, pagedListConfig).build()
     }

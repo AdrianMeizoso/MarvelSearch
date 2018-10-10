@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedList
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adrian.marvelsearch.R
@@ -33,7 +34,7 @@ class MainActivity : DaggerAppCompatActivity() {
         //mainViewModel.text.observe(this, Observer(::setTextToView))
         mainViewModel.getTextData()
 
-        val linearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        val linearLayoutManager = GridLayoutManager(this, 2)
         val heroesAdapter = HeroesAdapter()
         heroes_recycler.layoutManager = linearLayoutManager
         heroes_recycler.adapter = heroesAdapter

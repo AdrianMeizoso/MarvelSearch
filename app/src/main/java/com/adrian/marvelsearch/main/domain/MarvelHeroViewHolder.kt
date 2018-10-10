@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.adrian.marvelsearch.R
+import com.adrian.marvelsearch.common.injection.GlideApp
 
 class MarvelHeroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -15,6 +16,11 @@ class MarvelHeroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(hero: MarvelHero) {
         heroName.text = hero.name
+
+        GlideApp.with(itemView)
+                .load("${hero.thumbnail.path}/standard_fantastic.${hero.thumbnail.extension}")
+                .override(600, 600)
+                .into(heroImage)
     }
 
     fun clear() {
