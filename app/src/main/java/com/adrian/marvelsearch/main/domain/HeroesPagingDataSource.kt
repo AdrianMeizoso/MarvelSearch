@@ -1,8 +1,6 @@
 package com.adrian.marvelsearch.main.domain
 
-import androidx.paging.ItemKeyedDataSource
 import androidx.paging.PageKeyedDataSource
-import androidx.paging.PositionalDataSource
 import com.adrian.marvelsearch.main.usecase.GetHeroes
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -10,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 
 class HeroesPagingDataSource(
         private val getHeroes: GetHeroes,
-        private val compositeDisposable: CompositeDisposable) : PageKeyedDataSource<Int,MarvelHero>() {
+        private val compositeDisposable: CompositeDisposable) : PageKeyedDataSource<Int, MarvelHero>() {
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, MarvelHero>) {
         compositeDisposable.add(getHeroes.execute()

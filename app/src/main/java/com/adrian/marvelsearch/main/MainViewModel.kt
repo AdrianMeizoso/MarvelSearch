@@ -15,13 +15,15 @@ import io.reactivex.schedulers.Schedulers
 class MainViewModel(private var getHeroes: GetHeroes) : BaseViewModel() {
 
     lateinit var heroesList: LiveData<PagedList<MarvelHero>>
+    private val pagedListConfig by lazy {
+        PagedList.Config.Builder().setEnablePlaceholders(false)
+                .setInitialLoadSizeHint(20)
+                .setPageSize(20)
+                .setPrefetchDistance(40)
+                .build()
+    }
 
     fun getTextData() {
-        val pagedListConfig =
-                PagedList.Config.Builder().setEnablePlaceholders(false)
-                        .setInitialLoadSizeHint(20)
-                        .setPageSize(20)
-                        .build()
         val sourceFactory = HeroesPagingDataSourceFactory(disposables, getHeroes)
         heroesList = LivePagedListBuilder(sourceFactory, pagedListConfig).build()
     }

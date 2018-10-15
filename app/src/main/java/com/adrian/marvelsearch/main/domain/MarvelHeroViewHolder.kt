@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.adrian.marvelsearch.R
 import com.adrian.marvelsearch.common.injection.GlideApp
@@ -16,6 +17,10 @@ class MarvelHeroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(hero: MarvelHero) {
         heroName.text = hero.name
+
+        heroImage.setOnClickListener {
+            it.findNavController().navigate(R.id.action_listFragment_to_detailFragment)
+        }
 
         GlideApp.with(itemView)
                 .load("${hero.thumbnail.path}/standard_fantastic.${hero.thumbnail.extension}")

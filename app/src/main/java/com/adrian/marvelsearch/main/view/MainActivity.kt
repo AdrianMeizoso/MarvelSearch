@@ -18,30 +18,8 @@ import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
 
-    @Inject
-    lateinit var mainViewModelFactory: MainViewModelFactory
-
-    lateinit var mainViewModel: MainViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        mainViewModel = ViewModelProviders.of(this, mainViewModelFactory)
-                .get(MainViewModel::class.java)
-
-        //helloText.setTextColor(getColor(R.color.colorPrimary))
-        //mainViewModel.text.observe(this, Observer(::setTextToView))
-        mainViewModel.getTextData()
-
-        val linearLayoutManager = GridLayoutManager(this, 2)
-        val heroesAdapter = HeroesAdapter()
-        heroes_recycler.layoutManager = linearLayoutManager
-        heroes_recycler.adapter = heroesAdapter
-        mainViewModel.heroesList.observe(this, Observer<PagedList<MarvelHero>> { heroesAdapter.submitList(it) })
-    }
-
-    private fun setTextToView(text: String?) {
-        //helloText.text = text
     }
 }

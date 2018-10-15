@@ -1,7 +1,6 @@
 package com.adrian.marvelsearch.main.domain
 
 import android.view.ViewGroup
-import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 
