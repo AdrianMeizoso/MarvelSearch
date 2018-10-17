@@ -15,6 +15,8 @@ import io.reactivex.schedulers.Schedulers
 class MainViewModel(private var getHeroes: GetHeroes) : BaseViewModel() {
 
     lateinit var heroesList: LiveData<PagedList<MarvelHero>>
+    var heroesListHash: HashMap<Int, MarvelHero> = HashMap()
+
     private val pagedListConfig by lazy {
         PagedList.Config.Builder().setEnablePlaceholders(false)
                 .setInitialLoadSizeHint(20)
@@ -27,4 +29,6 @@ class MainViewModel(private var getHeroes: GetHeroes) : BaseViewModel() {
         val sourceFactory = HeroesPagingDataSourceFactory(disposables, getHeroes)
         heroesList = LivePagedListBuilder(sourceFactory, pagedListConfig).build()
     }
+
+    fun getHeroById(heroId: Int): MarvelHero? = heroesListHash[heroId]
 }

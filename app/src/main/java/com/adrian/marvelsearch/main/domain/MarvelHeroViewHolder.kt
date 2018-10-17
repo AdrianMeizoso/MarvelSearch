@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.adrian.marvelsearch.R
@@ -19,7 +20,8 @@ class MarvelHeroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         heroName.text = hero.name
 
         heroImage.setOnClickListener {
-            it.findNavController().navigate(R.id.action_listFragment_to_detailFragment)
+            val bundleHero = bundleOf("hero" to hero.id)
+            it.findNavController().navigate(R.id.action_listFragment_to_detailFragment, bundleHero)
         }
 
         GlideApp.with(itemView)

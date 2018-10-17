@@ -15,7 +15,12 @@ class GetHeroes @Inject constructor(private val heroesRepository: HeroesDataSour
     fun execute(): Single<List<MarvelHero>> {
         return heroesRepository
                 .getHeroes(offset)
-                .flatMap { Single.just(it.marvelData.marvelHeroes) }
+                .flatMap {
+                    Single.just(it.marvelData.marvelHeroes)
+                }
+                .doOnError {
+                    it.printStackTrace()
+                }
                 .doFinally { offset = 0 }
     }
 }

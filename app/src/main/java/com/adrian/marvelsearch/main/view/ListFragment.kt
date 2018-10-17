@@ -50,6 +50,11 @@ class ListFragment : DaggerFragment() {
         val heroesAdapter = HeroesAdapter()
         heroes_recycler.layoutManager = linearLayoutManager
         heroes_recycler.adapter = heroesAdapter
-        mainViewModel.heroesList.observe(this, Observer<PagedList<MarvelHero>> { heroesAdapter.submitList(it) })
+        mainViewModel.heroesList.observe(this, Observer<PagedList<MarvelHero>> {
+            heroesAdapter.submitList(it)
+            it.toList().forEach {hero ->
+                mainViewModel.heroesListHash[hero.id] = hero
+            }
+        })
     }
 }
