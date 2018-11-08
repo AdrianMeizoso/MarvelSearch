@@ -31,8 +31,6 @@ class ListFragment : DaggerFragment() {
             ViewModelProviders.of(this, mainViewModelFactory)
                     .get(MainViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
-
-        mainViewModel.getTextData()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +50,7 @@ class ListFragment : DaggerFragment() {
         heroes_recycler.adapter = heroesAdapter
         mainViewModel.heroesList.observe(this, Observer<PagedList<MarvelHero>> {
             heroesAdapter.submitList(it)
-            it.toList().forEach {hero ->
+            it.toList().forEach { hero ->
                 mainViewModel.heroesListHash[hero.id] = hero
             }
         })

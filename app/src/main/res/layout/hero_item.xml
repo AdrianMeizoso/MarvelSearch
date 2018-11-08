@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.adrian.marvelsearch.main.domain.MarvelThumbnail" />
+        <variable name="thumbnail" type="MarvelThumbnail" />
+        <import type="com.adrian.marvelsearch.main.domain.MarvelHero" />
+        <variable name="hero" type="MarvelHero" />
+        <import type="com.adrian.marvelsearch.main.domain.MarvelHeroViewHolder"/>
+        <variable name="viewHolder" type="MarvelHeroViewHolder" />
+    </data>
 
-    <ImageView
-        android:id="@+id/hero_image"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:orientation="vertical"
+        android:onClick="@{(view) -> viewHolder.onClickHero(view, hero)}">
 
-    <TextView
-        android:id="@+id/hero_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="@dimen/normal_text" />
+        <ImageView
+            android:id="@+id/hero_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:imageUrl="@{thumbnail.path + `/standard_fantastic.` + thumbnail.extension}"/>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <TextView
+            android:id="@+id/hero_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{hero.name}"
+            android:textSize="@dimen/normal_text" />
+
+    </LinearLayout>
+</layout>

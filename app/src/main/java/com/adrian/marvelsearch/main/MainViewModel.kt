@@ -12,9 +12,9 @@ import com.adrian.marvelsearch.main.usecase.GetHeroes
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(private var getHeroes: GetHeroes) : BaseViewModel() {
+class MainViewModel(getHeroes: GetHeroes) : BaseViewModel() {
 
-    lateinit var heroesList: LiveData<PagedList<MarvelHero>>
+    val heroesList: LiveData<PagedList<MarvelHero>>
     var heroesListHash: HashMap<Int, MarvelHero> = HashMap()
 
     private val pagedListConfig by lazy {
@@ -25,7 +25,7 @@ class MainViewModel(private var getHeroes: GetHeroes) : BaseViewModel() {
                 .build()
     }
 
-    fun getTextData() {
+    init {
         val sourceFactory = HeroesPagingDataSourceFactory(disposables, getHeroes)
         heroesList = LivePagedListBuilder(sourceFactory, pagedListConfig).build()
     }
